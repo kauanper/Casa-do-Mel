@@ -1,14 +1,13 @@
 package com.example.casadomel.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class Apicultor {
-    private String nome;
-    private String email;
-    private String senha;
-    private int quantidade_colmeias;
-    private double valor_pagamento;
-    private double quantidade_mel_kg;
+@EqualsAndHashCode(callSuper = true)
+public class Apicultor extends Usuario {
+    private int quantidadeColmeias;
+    private double valorReceber;
+    private double quantidadeMel_kg;
     private boolean pago;
 }
