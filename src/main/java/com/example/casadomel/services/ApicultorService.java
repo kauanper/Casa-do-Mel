@@ -18,6 +18,14 @@ public class ApicultorService {
     }
 
     public void adicionarApicultor(String nome, String email, String senha) {
-        System.out.println("ok");
+        Apicultor apicultor = new Apicultor();
+        apicultor.setNome(nome);
+        apicultor.setEmail(email);
+        apicultor.setSenha(senha);
+        apicultor.setQuantidadeColmeias(0);
+        apicultor.setQuantidadeMel_kg(0.0);
+        apicultor.setValorReceber(0.0);
+        apicultor.setPago(false);
+        apicultorRepository.adicionar(apicultor);
     }
 }

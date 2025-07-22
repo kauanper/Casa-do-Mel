@@ -19,7 +19,6 @@ public class ApicultorController {
 
     @GetMapping
     public ResponseEntity<List<Apicultor>> getApicultor() {
-
         List<Apicultor> response = apicultorService.todosApicultores();
         return ResponseEntity.ok(response);
     }
