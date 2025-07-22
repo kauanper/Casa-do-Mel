@@ -5,19 +5,19 @@ import com.example.casadomel.repositories.ApicultorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ListarApicultores {
+public class ApicultorService {
 
     @Autowired
     ApicultorRepository apicultorRepository;
 
-    public List<Apicultor> execute(){
+    public List<Apicultor> todosApicultores() {
+        return apicultorRepository.listarTodos();
+    }
 
-        List<Apicultor> apicultores = apicultorRepository.listarTodos();
-
-        return apicultores;
+    public void adicionarApicultor(String nome, String email, String senha) {
+        System.out.println("ok");
     }
 }

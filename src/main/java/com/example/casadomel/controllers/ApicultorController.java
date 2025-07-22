@@ -1,13 +1,12 @@
 package com.example.casadomel.controllers;
 
+import com.example.casadomel.dtos.SaveApicultoDTO;
 import com.example.casadomel.entities.Apicultor;
-import com.example.casadomel.services.ListarApicultores;
+import com.example.casadomel.services.ApicultorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,13 +15,22 @@ import java.util.List;
 public class ApicultorController {
 
     @Autowired
-    ListarApicultores listarApicultores;
+    ApicultorService apicultorService;
 
     @GetMapping
     public ResponseEntity<List<Apicultor>> getApicultor() {
 
-        System.out.println("aaaaaa");
-        List<Apicultor> response = listarApicultores.execute();
+        List<Apicultor> response = apicultorService.todosApicultores();
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping
+    public ResponseEntity<Apicultor> addApicultor(@RequestBody SaveApicultoDTO apicultor) {
+        String nome = apicultor.nome();
+        String email = apicultor.email();
+        String senha = apicultor.senha();
+        apicultorService.adicionarApicultor(nome, email, senha);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }
