@@ -4,7 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Administrador extends Usuario{
+public class Administrador {
+    private String nome;
+    private String email;
+    private String senha;
     private boolean superAdmin;
 }
