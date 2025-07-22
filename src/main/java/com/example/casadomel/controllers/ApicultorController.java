@@ -31,4 +31,18 @@ public class ApicultorController {
             return ResponseEntity.status(401).body("Email ou senha incorretos.");
         }
     }
+
+    @PatchMapping("/adicionar")
+    public ResponseEntity<Apicultor> adicionarColmeia(
+            @RequestParam("nome") String nome,
+            @RequestParam("valor") int valor){
+
+        Apicultor ap = apicultorService.adicionarColmeia(nome, valor);
+
+        if(ap != null) {
+            return ResponseEntity.ok(ap);
+        }
+
+        return ResponseEntity.status(404).build();
+    }
 }

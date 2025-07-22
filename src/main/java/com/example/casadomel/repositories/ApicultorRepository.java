@@ -41,4 +41,13 @@ public class ApicultorRepository {
     public void adicionar(Apicultor apicultor) {
         apicultores.add(apicultor);
     }
+
+    public Apicultor buscarPorNome(String nome) {
+        for (Apicultor apicultor : apicultores) {
+            if (apicultor.getNome().equals(nome)) {
+                return apicultor;
+            }
+        }
+        return null;
+    }
 }

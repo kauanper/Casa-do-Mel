@@ -38,4 +38,13 @@ public class ApicultorService {
         }
         return false;
     }
+
+    public Apicultor adicionarColmeia(String nome, int valor) {
+        Apicultor apicultor = apicultorRepository.buscarPorNome(nome);
+        if(apicultor == null) {
+            return null;
+        }
+        apicultor.setQuantidadeColmeias(apicultor.getQuantidadeColmeias() + valor);
+        return apicultor;
+    }
 }
