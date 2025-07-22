@@ -29,14 +29,14 @@ public class ApicultorService {
         apicultorRepository.adicionar(apicultor);
     }
 
-    public Boolean login(String email, String senha) {
+    public Apicultor login(String email, String senha) {
         List<Apicultor> apicultors = apicultorRepository.listarTodos();
         for (Apicultor apicultor : apicultors) {
             if(apicultor.getEmail().equals(email) && apicultor.getSenha().equals(senha)) {
-                return true;
+                return apicultor;
             }
         }
-        return false;
+        return null;
     }
 
     public Apicultor adicionarColmeia(String nome, int valor) {
