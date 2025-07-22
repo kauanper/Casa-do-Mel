@@ -23,15 +23,6 @@ public class ApicultorController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping
-    public ResponseEntity<Apicultor> addApicultor(@RequestBody SaveApicultoDTO apicultor) {
-        String nome = apicultor.nome();
-        String email = apicultor.email();
-        String senha = apicultor.senha();
-        apicultorService.adicionarApicultor(nome, email, senha);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
         if(apicultorService.login(email, senha)) {
