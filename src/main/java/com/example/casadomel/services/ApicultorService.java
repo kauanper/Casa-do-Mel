@@ -47,4 +47,16 @@ public class ApicultorService {
         apicultor.setQuantidadeColmeias(apicultor.getQuantidadeColmeias() + valor);
         return apicultor;
     }
+
+    public Apicultor removerColmeia(String nome, int valor) {
+        Apicultor apicultor = apicultorRepository.buscarPorNome(nome);
+        if(apicultor == null) {
+            return null;
+        }
+        apicultor.setQuantidadeColmeias(apicultor.getQuantidadeColmeias() - valor);
+        if(apicultor.getQuantidadeColmeias() < 0) {
+            apicultor.setQuantidadeColmeias(0);
+        }
+        return apicultor;
+    }
 }

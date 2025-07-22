@@ -46,4 +46,18 @@ public class ApicultorController {
 
         return ResponseEntity.status(404).build();
     }
+
+    @PatchMapping("/remover")
+    public ResponseEntity<Apicultor> removerColmeia(
+            @RequestParam("nome") String nome,
+            @RequestParam("valor") int valor){
+
+        Apicultor ap = apicultorService.removerColmeia(nome, valor);
+
+        if(ap != null) {
+            return ResponseEntity.ok(ap);
+        }
+
+        return ResponseEntity.status(404).build();
+    }
 }
