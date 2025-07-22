@@ -1,6 +1,8 @@
 package com.example.casadomel.controllers;
 
 import com.example.casadomel.entities.Apicultor;
+import com.example.casadomel.services.ListarApicultores;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +14,12 @@ import java.util.List;
 @RequestMapping("/apicultor")
 public class ApicultorController {
 
+    @Autowired
+    ListarApicultores listarApicultores;
+
     @GetMapping
     public ResponseEntity<List<Apicultor>> getApicultor() {
-
-        return null;
+        List<Apicultor> response = listarApicultores.execute();
+        return ResponseEntity.ok(response);
     }
 }
