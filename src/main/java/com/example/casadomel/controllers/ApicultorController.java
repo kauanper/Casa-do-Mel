@@ -35,9 +35,9 @@ public class ApicultorController {
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
         if(apicultorService.login(email, senha)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.ok("Login bem-sucedido!");
         }else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(401).body("Email ou senha incorretos.");
         }
     }
 }
