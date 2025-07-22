@@ -32,4 +32,12 @@ public class ApicultorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<String> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
+        if(apicultorService.login(email, senha)) {
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }
