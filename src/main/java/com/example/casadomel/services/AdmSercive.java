@@ -22,7 +22,17 @@ public class AdmSercive {
         if (admin == null) {
             return null;
         }
-
         return apicultorService.todosApicultores();
+    }
+
+    public Apicultor alterarMel(String nome, Double valor) {
+        Apicultor ap = apicultorService.buscarPorNome(nome);
+        if (ap == null) {
+            System.out.println("não achado");
+            return null; //apicultor não achado
+        }
+        ap.setQuantidadeMel_kg(ap.getQuantidadeMel_kg() + valor);
+
+        return ap;
     }
 }

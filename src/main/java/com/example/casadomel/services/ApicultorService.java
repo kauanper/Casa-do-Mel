@@ -59,4 +59,8 @@ public class ApicultorService {
         }
         return apicultor;
     }
+
+    public Apicultor buscarPorNome(String nome) {
+        return apicultorRepository.buscarPorNome(nome);
+    }
 }
