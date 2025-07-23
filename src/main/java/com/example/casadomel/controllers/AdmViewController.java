@@ -34,4 +34,23 @@ public class AdmViewController {
         admSercive.atualizarPagamento(nome);
         return "redirect:/adm/painel";
     }
+
+    @GetMapping("/login")
+    public String mostrarLogin(@RequestParam(value = "erro", required = false) String erro, Model model) {
+        if (erro != null) {
+            model.addAttribute("mensagemErro", "E-mail ou senha inválidos.");
+        }
+        return "login"; // login.html no templates
+    }
+
+    @PostMapping("/login-view")
+    public String processarLogin(@RequestParam("email") String email,
+                                 @RequestParam("senha") String senha) {
+        List<Apicultor> apicultores = admSercive.admLogin(email, senha);
+        if (apicultores == null || apicultores.isEmpty()) {
+            return "redirect:/adm/login?erro=true";
+        }
+        return "redirect:/adm/painel";
+    }
 }
+
