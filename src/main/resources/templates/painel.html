@@ -75,25 +75,25 @@
             color: #5d4037;
         }
 
-        select, input {
-            padding: 6px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            margin: 6px 0 10px 0;
+        select, input, button {
             width: 100%;
+            padding: 8px;
+            margin: 6px 0 10px 0;
             font-size: 14px;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        select, input {
+            border: 1px solid #ccc;
         }
 
         button {
             background-color: #fbc02d;
             color: #000;
-            padding: 8px;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
             font-weight: bold;
-            width: 100%;
-            font-size: 14px;
+            cursor: pointer;
         }
 
         button:hover {
@@ -115,7 +115,7 @@
         <h3 th:text="${apicultor.nome}">Nome</h3>
         <p><strong>Mel (kg):</strong> <span th:text="${apicultor.quantidadeMel_kg}">0</span></p>
         <p><strong>Taxa de serviços:</strong> R$ <span th:text="${apicultor.valorReceber}">0.00</span></p>
-        <p><strong>Pago:</strong> <span th:text="${apicultor.pago ? 'Sim' : 'Não'}">Não</span></p>
+        <p><strong>Pagamento pendente:</strong> <span th:text="${apicultor.pago ? 'Sim' : 'Não'}">Não</span></p>
     </div>
 </div>
 
