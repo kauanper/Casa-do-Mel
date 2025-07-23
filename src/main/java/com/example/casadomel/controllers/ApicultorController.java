@@ -1,6 +1,7 @@
 package com.example.casadomel.controllers;
 
 import com.example.casadomel.dtos.SaveApicultoDTO;
+import com.example.casadomel.dtos.ValorDosServicosDTO;
 import com.example.casadomel.entities.Apicultor;
 import com.example.casadomel.services.ApicultorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,20 @@ public class ApicultorController {
         Apicultor ap = apicultorService.removerColmeia(nome, valor);
         if(ap != null) {
             return ResponseEntity.ok(ap);
+        }
+        return ResponseEntity.status(404).build();
+    }
+
+    @GetMapping("/servicos")
+    public ResponseEntity<ValorDosServicosDTO> calcularServicos(
+            @RequestParam("nome") String nome,
+            @RequestParam("servicos") String servicos) {
+
+        ValorDosServicosDTO response =
+                new ValorDosServicosDTO(apicultorService.calcularPorServico(nome, servicos));
+
+        if(response != null) {
+            return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(404).build();
     }

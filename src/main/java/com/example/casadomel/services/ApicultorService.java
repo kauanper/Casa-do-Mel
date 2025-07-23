@@ -13,6 +13,9 @@ public class ApicultorService {
     @Autowired
     ApicultorRepository apicultorRepository;
 
+    @Autowired
+    ExtracaoService extracaoService;
+
     public List<Apicultor> todosApicultores() {
         return apicultorRepository.listarTodos();
     }
@@ -62,5 +65,14 @@ public class ApicultorService {
 
     public Apicultor buscarPorNome(String nome) {
         return apicultorRepository.buscarPorNome(nome);
+    }
+
+    public Double calcularPorServico(String nome, String servico) {
+        Apicultor apicultor = apicultorRepository.buscarPorNome(nome);
+        if(apicultor == null) {
+            return null;
+        }
+        extracaoService.calcularCusto(apicultor.getQuantidadeMel_kg(), apicultor);
+        return apicultor.getValorReceber();
     }
 }
