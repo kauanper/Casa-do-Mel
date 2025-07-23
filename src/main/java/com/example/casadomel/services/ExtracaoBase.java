@@ -5,7 +5,7 @@ import com.example.casadomel.entities.ServicosOferecido;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExtracaoService implements ServicosOferecido {
+public class ExtracaoBase implements ServicosOferecido {
 
     @Override
     public void calcularCusto(double mel_kg, Apicultor apicultor) {

@@ -1,7 +1,11 @@
 package com.example.casadomel.services;
 
 import com.example.casadomel.entities.Apicultor;
+import com.example.casadomel.entities.ServicosOferecido;
 import com.example.casadomel.repositories.ApicultorRepository;
+import com.example.casadomel.services.Decorator.AnaliseDecorator;
+import com.example.casadomel.services.Decorator.CeraDecorator;
+import com.example.casadomel.services.Decorator.EnvaseDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +16,6 @@ public class ApicultorService {
 
     @Autowired
     ApicultorRepository apicultorRepository;
-
-    @Autowired
-    ExtracaoService extracaoService;
 
     public List<Apicultor> todosApicultores() {
         return apicultorRepository.listarTodos();
@@ -69,10 +70,30 @@ public class ApicultorService {
 
     public Double calcularPorServico(String nome, String servico) {
         Apicultor apicultor = apicultorRepository.buscarPorNome(nome);
-        if(apicultor == null) {
+        if (apicultor == null) {
             return null;
         }
-        extracaoService.calcularCusto(apicultor.getQuantidadeMel_kg(), apicultor);
-        return apicultor.getValorReceber();
+
+        double quantidadeMel = apicultor.getQuantidadeMel_kg();
+
+        // Serviço base: extração
+        ServicosOferecido servicoComposto = new ExtracaoBase();
+
+        // Verifica se o parâmetro `servico` inclui outras opções
+        if (servico.contains("envase")) {
+            servicoComposto = new EnvaseDecorator(servicoComposto);
+        }
+        if (servico.contains("cera")) {
+            servicoComposto = new CeraDecorator(servicoComposto);
+        }
+        if (servico.contains("analise")) {
+            servicoComposto = new AnaliseDecorator(servicoComposto);
+        }
+
+        // Aplica os serviços ao apicultor
+        servicoComposto.calcularCusto(quantidadeMel, apicultor);
+
+        return apicultor.getValorReceber(); // ou getCustoTotal()
     }
+
 }
