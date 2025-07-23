@@ -79,21 +79,20 @@ public class ApicultorService {
         // Serviço base: extração
         ServicosOferecido servicoComposto = new ExtracaoBase();
 
-        // Verifica se o parâmetro `servico` inclui outras opções
-        if (servico.contains("envase")) {
+        // Verifica se o parâmetro "servico" inclui outras opções
+        if (servico.contains("1")) { //envase
             servicoComposto = new EnvaseDecorator(servicoComposto);
         }
-        if (servico.contains("cera")) {
+        if (servico.contains("2")) { // cera
             servicoComposto = new CeraDecorator(servicoComposto);
         }
-        if (servico.contains("analise")) {
+        if (servico.contains("3")) { // analise
             servicoComposto = new AnaliseDecorator(servicoComposto);
         }
 
-        // Aplica os serviços ao apicultor
         servicoComposto.calcularCusto(quantidadeMel, apicultor);
 
-        return apicultor.getValorReceber(); // ou getCustoTotal()
+        return apicultor.getValorReceber();
     }
 
 }
