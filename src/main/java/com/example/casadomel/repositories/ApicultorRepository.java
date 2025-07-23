@@ -18,7 +18,7 @@ public class ApicultorRepository {
         a1.setSenha("123456");
         a1.setQuantidadeColmeias(0);
         a1.setValorReceber(0.0);
-        a1.setQuantidadeMel_kg(30.3);
+        a1.setQuantidadeMel_kg(0);
         a1.setPago(false);
 
         Apicultor a2 = new Apicultor();
