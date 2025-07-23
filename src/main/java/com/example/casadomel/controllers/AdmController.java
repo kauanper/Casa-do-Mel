@@ -43,4 +43,10 @@ public class AdmController {
             }
             return ResponseEntity.ok(ap);
         }
+
+        @GetMapping("/nomes")
+        public ResponseEntity<List<String>> listarNomes(){
+            List<String> nome = admSercive.listarApicultorsPorNome();
+            return ResponseEntity.ok(nome);
+        }
 }

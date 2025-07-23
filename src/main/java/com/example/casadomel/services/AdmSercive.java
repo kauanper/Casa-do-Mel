@@ -6,6 +6,7 @@ import com.example.casadomel.repositories.AdmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,6 +24,15 @@ public class AdmSercive {
             return null;
         }
         return apicultorService.todosApicultores();
+    }
+
+    public List<String> listarApicultorsPorNome() {
+        List<String> nomes = new ArrayList<>();
+        List<Apicultor> apicultorList = apicultorService.todosApicultores();
+        for (Apicultor apicultor : apicultorList) {
+            nomes.add(apicultor.getNome());
+        }
+        return nomes;
     }
 
     public Apicultor alterarMel(String nome, Double valor) {
