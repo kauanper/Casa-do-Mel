@@ -3,30 +3,56 @@
 <head>
     <title>Painel do Administrador</title>
     <style>
+        .card-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px;
+            gap: 16px;
+        }
+
         .card {
+            flex: 0 0 auto;
             border: 1px solid #aaa;
             padding: 16px;
-            margin: 10px;
             border-radius: 8px;
-            max-width: 300px;
             background-color: #f0f0f0;
+            width: 280px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card p {
+            margin: 4px 0;
+        }
+
+        h1, h2 {
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-<h1>Painel do Administrador</h1>
+<h1>Administrativo:Casa do Mel, Poranga-CE</h1>
 
-<div th:each="apicultor : ${apicultores}" class="card">
-    <h3 th:text="${apicultor.nome}">Nome</h3>
-    <p><strong>Mel (kg):</strong> <span th:text="${apicultor.quantidadeMel_kg}">0</span></p>
-    <p><strong>Taxa de serviços:</strong> R$ <span th:text="${apicultor.valorReceber}">0.00</span></p>
+<div class="card-container">
+    <div th:each="apicultor : ${apicultores}" class="card">
+        <h3 th:text="${apicultor.nome}">Nome</h3>
+        <p><strong>Mel (kg):</strong> <span th:text="${apicultor.quantidadeMel_kg}">0</span></p>
+        <p><strong>Taxa de serviços:</strong> R$ <span th:text="${apicultor.valorReceber}">0.00</span></p>
+        <p><strong>Pago:</strong> <span th:text="${apicultor.pago ? 'Sim' : 'Não'}">Não</span></p>
+    </div>
 </div>
 
 <hr>
 
-<h2>Alterar quantidade de mel</h2>
+<h2>Adicionar nova quantidade de mel (kg)</h2>
 <form th:action="@{/adm/mel-view}" method="post">
-    <input type="text" name="nome" placeholder="Nome do apicultor" required>
+    <select name="nome" required>
+        <option value="" disabled selected>Selecione o apicultor</option>
+        <option th:each="ap : ${apicultores}" th:value="${ap.nome}" th:text="${ap.nome}"></option>
+    </select>
     <input type="number" step="0.01" name="valor" placeholder="Novo valor de mel" required>
     <button type="submit">Alterar</button>
 </form>
