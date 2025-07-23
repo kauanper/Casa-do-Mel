@@ -77,20 +77,23 @@ public class ApicultorService {
         double quantidadeMel = apicultor.getQuantidadeMel_kg();
 
         // Serviço base: extração
-        ServicosOferecido servicoComposto = new ExtracaoBase();
+        ServicosOferecido servicoDecorator = new ExtracaoBase();
 
         // Verifica se o parâmetro "servico" inclui outras opções
         if (servico.contains("1")) { //envase
-            servicoComposto = new EnvaseDecorator(servicoComposto);
+            servicoDecorator = new EnvaseDecorator(servicoDecorator);
         }
         if (servico.contains("2")) { // cera
-            servicoComposto = new CeraDecorator(servicoComposto);
+            servicoDecorator = new CeraDecorator(servicoDecorator);
         }
         if (servico.contains("3")) { // analise
-            servicoComposto = new AnaliseDecorator(servicoComposto);
+            servicoDecorator = new AnaliseDecorator(servicoDecorator);
         }
 
-        servicoComposto.calcularCusto(quantidadeMel, apicultor);
+        servicoDecorator.calcularCusto(quantidadeMel, apicultor);
+        if(apicultor.getValorReceber() != 0){
+            apicultor.setPago(false);
+        }
 
         return apicultor.getValorReceber();
     }

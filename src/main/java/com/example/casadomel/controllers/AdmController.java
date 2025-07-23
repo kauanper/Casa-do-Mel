@@ -34,4 +34,13 @@ public class AdmController {
             return ResponseEntity.ok(ap);
         }
 
+        @PutMapping("/pagou")
+        public ResponseEntity<Apicultor> pagou(@RequestParam("nome") String nome) {
+
+            Apicultor ap = admSercive.atualizarPagamento(nome);
+            if(ap == null) {
+                return ResponseEntity.status(404).build();
+            }
+            return ResponseEntity.ok(ap);
+        }
 }

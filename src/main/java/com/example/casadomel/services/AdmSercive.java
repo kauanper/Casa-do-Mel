@@ -35,4 +35,16 @@ public class AdmSercive {
 
         return ap;
     }
+
+    public Apicultor atualizarPagamento(String nome){
+        Apicultor ap = apicultorService.buscarPorNome(nome);
+        if (ap == null) {
+            return null;
+        }
+        ap.setPago(true);
+        ap.setValorReceber(0);
+        ap.setQuantidadeMel_kg(0);
+        return ap;
+    }
+
 }
