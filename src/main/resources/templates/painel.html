@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Painel do Administrador</title>
+</head>
+<body>
+<h1>Bem-vindo ao Painel</h1>
+
+<h2>Apicultores</h2>
+<ul>
+    <li th:each="nome : ${nomes}" th:text="${nome}"></li>
+</ul>
+
+<form th:action="@{/adm/mel-view}" method="post">
+    <h3>Alterar quantidade de mel</h3>
+    <input type="text" name="nome" placeholder="Nome do apicultor" required>
+    <input type="number" step="0.01" name="valor" placeholder="Novo valor de mel" required>
+    <button type="submit">Alterar</button>
+</form>
+
+<form th:action="@{/adm/pagou-view}" method="post">
+    <h3>Marcar como pago</h3>
+    <input type="text" name="nome" placeholder="Nome do apicultor" required>
+    <button type="submit">Confirmar</button>
+</form>
+</body>
+</html>
