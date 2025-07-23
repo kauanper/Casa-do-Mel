@@ -16,7 +16,7 @@ public class AdmController {
     @Autowired
     private AdmSercive admSercive;
 
-    @GetMapping("/login")
+    @GetMapping("/api-login")
     public ResponseEntity<List<Apicultor>> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
         List<Apicultor> response = admSercive.admLogin(email, senha);
         if(response == null) {
@@ -25,7 +25,7 @@ public class AdmController {
         return ResponseEntity.ok(response);
     }
 
-        @PatchMapping("/mel")
+    @PatchMapping("/mel")
         public ResponseEntity<Apicultor> alterarMelDeApicultor(@RequestParam("nome") String nome, @RequestParam("valor") Double valor) {
             Apicultor ap = admSercive.alterarMel(nome, valor);
             if(ap == null) {

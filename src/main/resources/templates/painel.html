@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Casa do Mel</title>
+    <style>
+        body {
+            background-color: #fff8e1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #5d4037;
+        }
+
+        .card-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            gap: 16px;
+            justify-content: flex-start;
+        }
+
+        .card-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .card-container::-webkit-scrollbar-thumb {
+            background-color: #fbc02d;
+            border-radius: 4px;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            border: 1px solid #e0b200;
+            padding: 16px;
+            border-radius: 12px;
+            background-color: #fffde7;
+            width: 260px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #ffb300;
+        }
+
+        .card p {
+            margin: 6px 0;
+            font-weight: bold;
+            color: #6d4c41;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        form {
+            background-color: #fff3e0;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #5d4037;
+        }
+
+        select, input {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin: 6px 0 10px 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #fbc02d;
+            color: #000;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #f9a825;
+        }
+
+        hr {
+            margin: 40px 0;
+            border: 1px solid #e0b200;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Administrativo: Casa do Mel de Poranga-CE</h1>
+
+<div class="card-container">
+    <div th:each="apicultor : ${apicultores}" class="card">
+        <h3 th:text="${apicultor.nome}">Nome</h3>
+        <p><strong>Mel (kg):</strong> <span th:text="${apicultor.quantidadeMel_kg}">0</span></p>
+        <p><strong>Taxa de serviços:</strong> R$ <span th:text="${apicultor.valorReceber}">0.00</span></p>
+        <p><strong>Pago:</strong> <span th:text="${apicultor.pago ? 'Sim' : 'Não'}">Não</span></p>
+    </div>
+</div>
+
+<hr>
+
+<div class="form-container">
+    <form th:action="@{/adm/mel-view}" method="post">
+        <h2>Adicionar Mel</h2>
+        <label>Apicultor:</label>
+        <select name="nome" required>
+            <option value="" disabled selected>Selecione um apicultor</option>
+            <option th:each="ap : ${apicultores}" th:value="${ap.nome}" th:text="${ap.nome}"></option>
+        </select>
+
+        <label>Quantidade (kg):</label>
+        <input type="number" step="0.01" name="valor" placeholder="Ex: 10.5" required>
+
+        <button type="submit">Alterar</button>
+    </form>
+
+    <form th:action="@{/adm/pagou-view}" method="post">
+        <h2>Marcar como Pago</h2>
+        <label>Apicultor:</label>
+        <select name="nome" required>
+            <option value="" disabled selected>Selecione um apicultor</option>
+            <option th:each="ap : ${apicultores}" th:value="${ap.nome}" th:text="${ap.nome}"></option>
+        </select>
+
+        <button type="submit">Confirmar</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -60,4 +60,9 @@ public class AdmSercive {
         return ap;
     }
 
+    public List<Apicultor> buscarTodos() {
+        return apicultorService.todosApicultores();
+    }
+
+
 }
