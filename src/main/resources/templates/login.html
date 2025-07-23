@@ -1,14 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login do Administrador</title>
+    <title>Login - Casa do Mel</title>
+    <style>
+        body {
+            background-color: #fff8e1;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fffde7;
+            border: 1px solid #e0b200;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #5d4037;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #fbc02d;
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #f9a825;
+        }
+
+        .erro {
+            color: red;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #ffb300;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<h1>Login do Admin</h1>
-<form action="#" th:action="@{/adm/login-view}" method="post">
-    <label>Email:</label><input type="email" name="email" required><br>
-    <label>Senha:</label><input type="password" name="senha" required><br>
-    <button type="submit">Entrar</button>
-</form>
+<div class="login-container">
+    <div class="logo">Casa do Mel de Poranga</div>
+    <h2>Área Administrativa</h2>
+
+    <form th:action="@{/adm/login-view}" method="post">
+        <input type="email" name="email" placeholder="E-mail" required />
+        <input type="password" name="senha" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+    </form>
+
+    <div class="erro" th:if="${mensagemErro}" th:text="${mensagemErro}"></div>
+</div>
 </body>
 </html>
