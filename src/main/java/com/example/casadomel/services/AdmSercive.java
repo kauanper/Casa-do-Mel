@@ -41,6 +41,9 @@ public class AdmSercive {
         if (ap == null) {
             return null;
         }
+        if(ap.isPago()){
+            return ap;
+        }
         ap.setPago(true);
         ap.setValorReceber(0);
         ap.setQuantidadeMel_kg(0);
