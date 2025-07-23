@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Alterar Mel</title>
 </head>
 <body>
+<h1>Alterar Quantidade de Mel</h1>
 
+<form th:action="@{/adm/mel-view}" method="post">
+  <label>Nome do Apicultor:</label><br>
+  <input type="text" name="nome" required><br><br>
+
+  <label>Nova Quantidade de Mel (kg):</label><br>
+  <input type="number" name="valor" step="0.01" required><br><br>
+
+  <button type="submit">Atualizar</button>
+</form>
+
+<br>
+<a th:href="@{/adm/login-view}">Voltar para o painel</a>
 </body>
 </html>
