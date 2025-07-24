@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div class="container">
-    <h1>🐝 Bem-vindo, <span id="nome"></span>!</h1>
+<h1 style="text-align: center;">🐝 Bem-vindo, <span id="nome"></span>!</h1>
 
+<div class="container">
+    <!-- Card Apicultor -->
     <div class="card" id="card-apicultor">
         <h2>📋 Seus dados:</h2>
         <p><strong>Nome:</strong> <span id="nomeCard"></span></p>
@@ -19,29 +20,33 @@
         <p><strong>Pagamento pendente:</strong> <span id="pago">Não</span></p>
     </div>
 
-    <h2>🍯 Escolha os serviços desejados:</h2>
-    <div class="servicos-grid">
-        <label class="servico-card">
-            <input type="checkbox" value="1" />
-            <h3>Envase</h3>
-            <p>Engarrafamento do mel em frascos.</p>
-        </label>
+    <!-- Serviços -->
+    <div class="servicos-box">
+        <h2>🍯 Escolha os serviços desejados:</h2>
 
-        <label class="servico-card">
-            <input type="checkbox" value="2" />
-            <h3>Cera</h3>
-            <p>Separação e purificação da cera.</p>
-        </label>
+        <div class="servicos-grid">
+            <label class="servico-card">
+                <input type="checkbox" value="1" />
+                <h3>Envase</h3>
+                <p>Engarrafamento do mel em frascos.</p>
+            </label>
 
-        <label class="servico-card">
-            <input type="checkbox" value="3" />
-            <h3>Análise</h3>
-            <p>Teste de qualidade e pureza do mel.</p>
-        </label>
+            <label class="servico-card">
+                <input type="checkbox" value="2" />
+                <h3>Cera</h3>
+                <p>Separação e purificação da cera.</p>
+            </label>
+
+            <label class="servico-card">
+                <input type="checkbox" value="3" />
+                <h3>Análise</h3>
+                <p>Teste de qualidade e pureza do mel.</p>
+            </label>
+        </div>
+
+        <button onclick="calcularServicos()">Calcular Valor</button>
+        <p id="resultado"></p>
     </div>
-
-    <button onclick="calcularServicos()">Calcular Valor</button>
-    <p id="resultado"></p>
 </div>
 
 <script src="home.js"></script>
