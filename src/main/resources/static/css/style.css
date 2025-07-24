@@ -1,0 +1,73 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff8dc;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: #fffbe6;
+    border: 2px solid #f1c40f;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px #f1c40f88;
+}
+
+h1, h2 {
+    color: #a45c00;
+}
+
+.card {
+    background: #fff9c4;
+    padding: 20px;
+    border-left: 8px solid #fbc02d;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.servicos-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.servico-card {
+    flex: 1;
+    min-width: 150px;
+    background-color: #fff3cd;
+    border: 2px dashed #f0ad4e;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.servico-card:hover {
+    background-color: #ffe8a1;
+    transform: scale(1.03);
+}
+
+button {
+    background-color: #f1c40f;
+    color: #4e342e;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #f39c12;
+}
+
+#resultado {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #6d4c41;
+}
