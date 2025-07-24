@@ -4,7 +4,10 @@ if (!apicultor) {
     window.location.href = "login.html";
 }
 
+// Preenche os dois lugares diferentes do nome
 document.getElementById("nome").textContent = apicultor.nome;
+document.getElementById("nomeCard").textContent = apicultor.nome;
+
 document.getElementById("email").textContent = apicultor.email;
 document.getElementById("senha").textContent = apicultor.senha;
 document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
@@ -13,7 +16,7 @@ document.getElementById("valorReceber").textContent = apicultor.valorReceber.toF
 document.getElementById("pago").textContent = apicultor.pago ? "Sim" : "Não";
 
 function calcularServicos() {
-    let servicos = "0";
+    let servicos = "0"; // início com "0" pois seu backend entende que é extração base
     document.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
         servicos += cb.value;
     });
