@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Apicultor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Bem-vindo, <span id="nome"></span></h1>
+
+    <div class="card" id="card-apicultor">
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Colmeias:</strong> <span id="colmeias"></span></p>
+        <p><strong>Mel (kg):</strong> <span id="mel"></span></p>
+    </div>
+
+    <h2>Escolha os serviços:</h2>
+    <div class="minicards">
+        <label><input type="checkbox" value="1"> Envase</label>
+        <label><input type="checkbox" value="2"> Cera</label>
+        <label><input type="checkbox" value="3"> Análise</label>
+    </div>
+
+    <button onclick="calcularServicos()">Calcular Valor</button>
+    <p id="resultado"></p>
+</div>
+
+<script src="home.js"></script>
+</body>
+</html>
