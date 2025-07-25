@@ -1,6 +1,5 @@
 package com.example.casadomel.controllers;
 
-import com.example.casadomel.dtos.SaveApicultoDTO;
 import com.example.casadomel.dtos.ValorDosServicosDTO;
 import com.example.casadomel.entities.Apicultor;
 import com.example.casadomel.services.ApicultorService;
