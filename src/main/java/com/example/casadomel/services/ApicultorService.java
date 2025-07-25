@@ -77,6 +77,9 @@ public class ApicultorService {
         if (apicultor == null) {
             return null;
         }
+        if(apicultor.isPago() == false) {
+            return null;
+        }
 
         double quantidadeMel = apicultor.getQuantidadeMel_kg();
 
