@@ -57,10 +57,34 @@ function calcularServicos() {
             return res.json();
         })
         .then(data => {
+            // Atualiza o valorReceber e resultado imediato
             document.getElementById("valorReceber").textContent = data.valor.toFixed(2);
             document.getElementById("resultado").innerText = `🍯 Valor a pagar pelos serviços: R$ ${data.valor.toFixed(2)}`;
+
+            // Agora busca o objeto apicultor completo atualizado
+            return fetch(`/apicultor/atulizar-dados?nome=${encodeURIComponent(apicultor.nome)}`);
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Erro ao atualizar dados após cálculo");
+            return res.json();
+        })
+        .then(apicultorAtualizado => {
+            // Atualiza variável global e localStorage com o objeto completo
+            apicultor = apicultorAtualizado;
+            localStorage.setItem("apicultor", JSON.stringify(apicultorAtualizado));
+
+            // Atualiza toda a interface com os dados atualizados
+            document.getElementById("nome").textContent = apicultor.nome;
+            document.getElementById("nomeCard").textContent = apicultor.nome;
+            document.getElementById("email").textContent = apicultor.email;
+            document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
+            document.getElementById("mel").textContent = apicultor.quantidadeMel_kg;
+            document.getElementById("valorReceber").textContent = apicultor.valorReceber ? apicultor.valorReceber.toFixed(2) : "0.00";
+            document.getElementById("pago").textContent = apicultor.pago ? "Não" : "Sim";
         })
         .catch(err => {
             document.getElementById("resultado").innerText = `❌ ${err.message}`;
+            console.error(err);
         });
 }
+
