@@ -65,7 +65,11 @@ public class ApicultorService {
     }
 
     public Apicultor buscarPorNome(String nome) {
-        return apicultorRepository.buscarPorNome(nome);
+        Apicultor apicultor = apicultorRepository.buscarPorNome(nome);
+        if(apicultor == null) {
+            return null;
+        }
+        return apicultor;
     }
 
     public Double calcularPorServico(String nome, String servico) {
