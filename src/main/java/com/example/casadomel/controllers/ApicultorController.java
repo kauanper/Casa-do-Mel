@@ -1,6 +1,5 @@
 package com.example.casadomel.controllers;
 
-import com.example.casadomel.dtos.SaveApicultoDTO;
 import com.example.casadomel.dtos.ValorDosServicosDTO;
 import com.example.casadomel.entities.Apicultor;
 import com.example.casadomel.services.ApicultorService;
@@ -71,5 +70,14 @@ public class ApicultorController {
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(404).build();
+    }
+
+    @GetMapping("/atulizar-dados")
+    public ResponseEntity<Apicultor> atualizarDadosPorNome(@RequestParam("nome") String nome){
+        Apicultor responde = apicultorService.buscarPorNome(nome);
+        if(responde == null) {
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.ok(responde);
     }
 }
