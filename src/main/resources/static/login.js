@@ -8,7 +8,6 @@ function login() {
             return res.json();
         })
         .then(data => {
-            // Salva no localStorage para usar na home
             localStorage.setItem("apicultor", JSON.stringify(data));
             window.location.href = "home.html";
         })
