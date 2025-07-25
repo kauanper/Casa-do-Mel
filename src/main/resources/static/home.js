@@ -1,18 +1,51 @@
-const apicultor = JSON.parse(localStorage.getItem("apicultor"));
+// variável global que irá guardar os dados atualizados do apicultor
+let apicultor = JSON.parse(localStorage.getItem("apicultor"));
 
 if (!apicultor) {
     window.location.href = "login.html";
+} else {
+    // Busca dados atualizados no backend
+    fetch(`/apicultor/atulizar-dados?nome=${encodeURIComponent(apicultor.nome)}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Erro ao atualizar dados");
+            return res.json();
+        })
+        .then(apicultorAtualizado => {
+            apicultor = apicultorAtualizado; // atualiza a variável global
+
+            // Atualiza localStorage com dados atualizados
+            localStorage.setItem("apicultor", JSON.stringify(apicultorAtualizado));
+
+            // Atualiza a interface com os dados atualizados
+            document.getElementById("nome").textContent = apicultor.nome;
+            document.getElementById("nomeCard").textContent = apicultor.nome;
+            document.getElementById("email").textContent = apicultor.email;
+            document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
+            document.getElementById("mel").textContent = apicultor.quantidadeMel_kg;
+            document.getElementById("valorReceber").textContent = apicultor.valorReceber ? apicultor.valorReceber.toFixed(2) : "0.00";
+            document.getElementById("pago").textContent = apicultor.pago ? "Não" : "Sim";
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erro ao carregar dados atualizados, mostrando dados locais.");
+
+            // Atualiza a interface com os dados locais
+            document.getElementById("nome").textContent = apicultor.nome;
+            document.getElementById("nomeCard").textContent = apicultor.nome;
+            document.getElementById("email").textContent = apicultor.email;
+            document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
+            document.getElementById("mel").textContent = apicultor.quantidadeMel_kg;
+            document.getElementById("valorReceber").textContent = apicultor.valorReceber ? apicultor.valorReceber.toFixed(2) : "0.00";
+            document.getElementById("pago").textContent = apicultor.pago ? "Não" : "Sim";
+        });
 }
 
-document.getElementById("nome").textContent = apicultor.nome;
-document.getElementById("nomeCard").textContent = apicultor.nome;
-document.getElementById("email").textContent = apicultor.email;
-document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
-document.getElementById("mel").textContent = apicultor.quantidadeMel_kg;
-document.getElementById("valorReceber").textContent = apicultor.valorReceber ? apicultor.valorReceber.toFixed(2) : "0.00";
-document.getElementById("pago").textContent = apicultor.pago ? "Não" : "Sim";
-
 function calcularServicos() {
+    if (!apicultor) {
+        alert("Apicultor não definido.");
+        return;
+    }
+
     let servicos = "0";
     document.querySelectorAll("input[type=checkbox]:checked").forEach(cb => {
         servicos += cb.value;
