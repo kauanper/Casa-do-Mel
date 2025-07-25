@@ -10,7 +10,7 @@ document.getElementById("email").textContent = apicultor.email;
 document.getElementById("colmeias").textContent = apicultor.quantidadeColmeias;
 document.getElementById("mel").textContent = apicultor.quantidadeMel_kg;
 document.getElementById("valorReceber").textContent = apicultor.valorReceber ? apicultor.valorReceber.toFixed(2) : "0.00";
-document.getElementById("pago").textContent = apicultor.pago ? "Sim" : "Não";
+document.getElementById("pago").textContent = apicultor.pago ? "Não" : "Sim";
 
 function calcularServicos() {
     let servicos = "0";
