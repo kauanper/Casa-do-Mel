@@ -41,6 +41,10 @@ public class AdmSercive {
             System.out.println("não achado");
             return null; //apicultor não achado
         }
+        if(ap.isPago() == false) {
+            System.out.println("é isso kauan");
+            return null;//operação invalida, pois está devendo
+        }
         ap.setQuantidadeMel_kg(ap.getQuantidadeMel_kg() + valor);
 
         return ap;
