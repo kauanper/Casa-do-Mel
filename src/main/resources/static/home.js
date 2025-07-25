@@ -25,7 +25,7 @@ function calcularServicos() {
         })
         .then(data => {
             document.getElementById("valorReceber").textContent = data.valor.toFixed(2);
-            document.getElementById("resultado").innerText = `🐝 Valor a receber pelos serviços: R$ ${data.valor.toFixed(2)}`;
+            document.getElementById("resultado").innerText = `🍯 Valor a pagar pelos serviços: R$ ${data.valor.toFixed(2)}`;
         })
         .catch(err => {
             document.getElementById("resultado").innerText = `❌ ${err.message}`;
