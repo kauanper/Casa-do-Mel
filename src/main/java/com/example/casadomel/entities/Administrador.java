@@ -37,4 +37,5 @@ public class Administrador {
     public void setSuperAdmin(boolean superAdmin) {
         this.superAdmin = superAdmin;
     }
+    //testando a nova branch do github
 }
